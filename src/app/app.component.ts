@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+
+// import * as Http from "http";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'example-ng';
+
+  constructor(private http: HttpClient) {
+    console.log("constructor");
+    this.http.get<any>('api/get-welcome').subscribe(data => {
+      console.log(data);
+    });
+
+  }
 }
